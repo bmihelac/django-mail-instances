@@ -41,7 +41,6 @@ class Instance(models.Model):
 
     def send_email(self):
         to = self.obj.get_recipients()
-        raise Error
         ctx = {
             'message': self.message,
             'instance': self,
