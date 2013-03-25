@@ -28,4 +28,4 @@ def mail_instances_action(modeladmin, request, queryset):
     template_name = 'admin/mail_instances/message_form.html'
     return TemplateResponse(request, template_name, context)
 
-mail_instances_action.short_description = _('Send message')
+mail_instances_action.short_description = _('Send message to selected')
