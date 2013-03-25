@@ -1,0 +1,19 @@
+{% extends "admin/mail_instances/base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block breadcrumbs_last %}
+  {% trans "Compose message" %}
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url "admin:mail_instances_message_mail_instances" %}" method="post">
+  {% csrf_token %}
+  {{ form.media }}
+  {{ form.as_p }}
+
+  <p><input type="submit" value="{% trans "Submit" %}"/></p>
+</form>
+
+{% endblock %}
