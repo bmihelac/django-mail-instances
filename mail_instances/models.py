@@ -14,7 +14,7 @@ class Message(models.Model):
     template = models.CharField(_('Template'), max_length=250)
     from_email = models.CharField(_('From'), max_length=200)
     subject = models.CharField(_('Subject'), max_length=200)
-    body = models.TextField(_('Body'), blank=True)
+    body = models.TextField(_('Body'), blank=True, editable=False)
     created = models.DateTimeField(_('Created'), auto_now_add=True,
                                    blank=True, null=True)
 

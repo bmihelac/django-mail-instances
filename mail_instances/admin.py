@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
 
 from .models import Message, Instance
 from .forms import get_message_form_class
@@ -20,12 +21,16 @@ class InstanceInline(admin.TabularInline):
 
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('subject', 'created',)
-    readonly_fields = ('subject', 'from_email', 'body', 'created',)
+    readonly_fields = ('subject', 'from_email', 'created', 'html_body')
     date_hierarchy = 'created'
-    search_fields = ['subject',]
+    search_fields = ['subject']
     inlines = [
         InstanceInline
     ]
+
+    def html_body(self, obj):
+        return mark_safe(obj.body)
+    html_body.is_safe = True
 
     def get_urls(self):
         urls = super(MessageAdmin, self).get_urls()
