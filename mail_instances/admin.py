@@ -22,6 +22,7 @@ class InstanceInline(admin.TabularInline):
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('subject', 'created',)
     readonly_fields = ('subject', 'from_email', 'created', 'html_body')
+    exclude = ('body',)
     date_hierarchy = 'created'
     search_fields = ['subject']
     inlines = [
