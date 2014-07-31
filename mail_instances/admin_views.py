@@ -13,7 +13,7 @@ def mail_instances_action(modeladmin, request, queryset):
     ct = ContentType.objects.get_for_model(queryset.model)
     model_class = ct.model_class()
     form_class = get_message_form_class(model_class)
-    selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+    selected = [str(instance.pk) for instance in queryset]
     pks = ",".join(selected)
     initial = {
         'pks': pks,
